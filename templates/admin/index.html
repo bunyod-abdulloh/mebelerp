@@ -1,0 +1,68 @@
+{% extends "admin/base_site.html" %}
+{% load i18n unfold %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+{% component "unfold/components/container.html" %}
+<div class="flex flex-col gap-8">
+
+    {% component "unfold/components/flex.html" with class="gap-4 flex-col lg:flex-row" %}
+    {% component "unfold/components/card.html" with class="lg:w-1/3" %}
+    {% component "unfold/components/text.html" %}Bu oy tushum (UZS){% endcomponent %}
+    {% component "unfold/components/title.html" %}{{ month_income }}{% endcomponent %}
+    {% endcomponent %}
+    {% component "unfold/components/card.html" with class="lg:w-1/3" %}
+    {% component "unfold/components/text.html" %}Bu oy xarajat (UZS){% endcomponent %}
+    {% component "unfold/components/title.html" %}{{ month_expense }}{% endcomponent %}
+    {% endcomponent %}
+    {% component "unfold/components/card.html" with class="lg:w-1/3" %}
+    {% component "unfold/components/text.html" %}Bu oy sof natija (UZS){% endcomponent %}
+    {% component "unfold/components/title.html" %}{{ month_net }}{% endcomponent %}
+    {% endcomponent %}
+    {% endcomponent %}
+
+    {% component "unfold/components/flex.html" with class="gap-4 flex-col lg:flex-row" %}
+    {% component "unfold/components/card.html" with class="lg:w-1/3" %}
+    {% component "unfold/components/text.html" %}Jami qarz (UZS){% endcomponent %}
+    {% component "unfold/components/title.html" %}{{ total_debt }}{% endcomponent %}
+    {% endcomponent %}
+    {% component "unfold/components/card.html" with class="lg:w-1/3" %}
+    {% component "unfold/components/text.html" %}Muddati o'tgan buyurtmalar{% endcomponent %}
+    {% component "unfold/components/title.html" %}{{ overdue_count }}{% endcomponent %}
+    {% endcomponent %}
+    {% component "unfold/components/card.html" with class="lg:w-1/3" %}
+    {% component "unfold/components/text.html" %}Faol buyurtmalar{% endcomponent %}
+    {% component "unfold/components/title.html" %}{{ active_count }}{% endcomponent %}
+    {% endcomponent %}
+    {% endcomponent %}
+
+    {% component "unfold/components/card.html" with title="Tushum va xarajat (oxirgi 6 oy)" %}
+    {% component "unfold/components/chart/bar.html" with data=cashflow_chart height=300 %}{% endcomponent %}
+    {% endcomponent %}
+
+    {% component "unfold/components/flex.html" with class="gap-4 flex-col lg:flex-row" %}
+    {% component "unfold/components/card.html" with class="lg:w-1/2" title="Xarajatlar (bu oy)" %}
+    {% component "unfold/components/chart/bar.html" with data=expense_chart height=250 %}{% endcomponent %}
+    {% endcomponent %}
+    {% component "unfold/components/card.html" with class="lg:w-1/2" title="Faol buyurtmalar holati" %}
+    {% component "unfold/components/chart/bar.html" with data=status_chart height=250 %}{% endcomponent %}
+    {% endcomponent %}
+    {% endcomponent %}
+
+    {% component "unfold/components/flex.html" with class="gap-4 flex-col lg:flex-row" %}
+    {% component "unfold/components/card.html" with class="lg:w-1/2" title="Eng katta qarzdorlar" %}
+    {% component "unfold/components/table.html" with table=debtors_table striped=True %}{% endcomponent %}
+    {% endcomponent %}
+    {% component "unfold/components/card.html" with class="lg:w-1/2" title="Muddati o'tgan to'lovlar" %}
+    {% component "unfold/components/table.html" with table=overdue_table striped=True %}{% endcomponent %}
+    {% endcomponent %}
+    {% endcomponent %}
+
+    {% component "unfold/components/card.html" with title="Topshirish muddati yaqin (7 kun)" %}
+    {% component "unfold/components/table.html" with table=upcoming_table striped=True %}{% endcomponent %}
+    {% endcomponent %}
+
+</div>
+{% endcomponent %}
+{% endblock %}
