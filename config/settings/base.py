@@ -10,8 +10,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 env = environ.Env()
 environ.Env.read_env(BASE_DIR / ".env")
 
-SECRET_KEY = env("SECRET_KEY")  # default yo'q: .env'da bo'lmasa, loyiha ishga tushmaydi
-DEBUG = False  # xavfsiz default, dev.py'da True qilamiz
+SECRET_KEY = env("SECRET_KEY")  
+DEBUG = env.bool("DEBUG")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 INSTALLED_APPS = [
